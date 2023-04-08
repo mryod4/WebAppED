@@ -1,0 +1,52 @@
+﻿@model IEnumerable<WebAppOperacionesTDS.Models.Instructor>
+<br>
+
+<h2>Listado de Instructores</h2>
+
+<form>
+      <div class="row">
+
+          <div class="col-3">
+              <input class="form-control" name="FilterByName" placeholder="Ingresar Nombre"/>
+          </div>
+          <div class="col-4">
+              <button class="btn btn-primary">Buscar</button>
+          </div>
+          <div class="col-5">
+
+          </div>
+
+      </div>
+</form>
+<br>
+<hr>
+<table class="table table-hover table-bordered">
+    <thead>
+        <tr class="table-warning"> 
+            <th><center><strong>Id</strong></center></th>
+            <th><center><strong>Nombres</strong></center></th>
+            <th><center><strong>Apellidos</strong></center></th>
+            <th><center><strong>Dni</strong></center></th>
+            <th><center><strong>Edad</strong></center></th>
+            <th><center><strong>Especialidad</strong></center></th>
+            <th><center><strong>Estado</strong></center></th>
+        </tr>
+    </thead>
+    <tbody>
+          @foreach(var datos in Model)
+          {
+              <tr>
+                  <td><center>@datos.IdInstructor</center></td>
+                  <td><center>@datos.Nombres</center></td>
+                  <td><center>@datos.Apellidos</center></td>
+                  <td><center>@datos.DNI</center></td>
+                  <td><center>@datos.EDAD</center></td>
+                  <td><center>@datos.Especialidad</center></td>
+                  <td><center>@datos.Estado</center></td>
+
+              </tr>
+          }
+
+    </tbody>
+
+</table>

@@ -1,0 +1,102 @@
+﻿@model IEnumerable<WebAppOperacionesTDS.Models.Operacion>
+@inject IAuthorizationService AuthorizationService
+@using X.PagedList.Mvc.Core;
+@using X.PagedList;
+
+<section class="content">
+    <div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card card-info card-outline">
+                <div class="card-header">
+                    <h3 class="card-title">
+                        <span class="text-dark">
+                            <i class="nav-icon fas fa-list" arial-hidden="true"></i>
+                                </span>
+                    </h3>
+        
+         <div class="card-tools">
+
+         <a class="btn btn-info btn-sm" role="button" asp-action="ServiceIndex">Sevicio Consulta</a>
+       
+
+        <div class="col-1">
+            @if((await AuthorizationService.AuthorizeAsync(User, "AllowLayoutAnalista")).Succeeded)
+            {
+                <a class="btn btn-success btn-sm" roles="button" asp-action="Create">Create</a>
+                <a class="btn-danger btn-sm" role="button" asp-action="ServiceIndex">Cuentas</a>
+            }
+             
+        </div>
+                        </div>
+                        </div>
+
+<div class="card-body">
+ <table class="table table-hover table-bordered table-sm">
+     <thead>
+         <tr class="table-info">
+             <th><center><strong>Id</strong></center></th>
+            <th><center><strong>Cliente</strong></center></th>
+            <th><center><strong>Lugar</strong></center></th>
+            <th><center><strong>Servicio</strong></center></th>
+            <th><center><strong>Precio</strong></center></th>
+            <th><center><strong>Registro</strong></center></th>
+            <th><center><strong>Modificacion</strong></center></th>
+            <th><center><strong>Opciones</strong></center></th>
+         </tr>
+     </thead>
+     <tbody>
+         @foreach(var item in Model)
+        {
+            <tr>
+                <td align="center">@item.IdOperacion</td>
+                <td align="left">@item.Cliente.RazonSocial</td>
+                <td align="center">@item.Lugar.NombreLugar</td>
+                <td align="left">@item.Servicio.NombreServicio</td>
+                <td align="center">@item.Precio</td>
+                <td align="center">@item.FechaRegistro</td>
+                <td align="center">@item.FechaModificacion</td>
+                <td align="center">
+                    @if ((await AuthorizationService.AuthorizeAsync(User, "AllowLayoutAnalista")).Succeeded)
+                    {
+                        <a class="btn btn-primary btn-sm" role="button" asp-route-id="@item.IdOperacion"
+                   asp-action="Edit">Edit</a>                       
+                    }
+                     @if ((await AuthorizationService.AuthorizeAsync(User, "AllowLayoutJefeAnalista")).Succeeded)
+                    {
+                        <a class="btn btn-warning btn-sm text-white" role="button" asp-route-id="@item.IdOperacion" 
+                    asp-action="Details">Details</a>
+                    }
+
+                    @if ((await AuthorizationService.AuthorizeAsync(User, "AllowLayoutJefeAnalista")).Succeeded)
+                    {
+                        <a class="btn btn-danger btn-sm" role="button" asp-route-id="@item.IdOperacion"
+                   asp-action="Delete">Delete</a>
+                    }
+
+                    @if ((await AuthorizationService.AuthorizeAsync(User, "AllowLayoutJefe")).Succeeded)
+                    {
+                        <a class="btn btn-info btn-sm" role="button">Aprobar</a>
+                    }
+                </td>
+
+                    
+                <td>
+                    <a class="btn btn-info btn-sm" role="button">Aprobar</a>
+                    </td>
+            </tr>
+        }
+    </tbody>
+</table>
+</div>
+<div class="card-header">
+    <h3 class="card-title">
+    @Html.PagedListPager((IPagedList)Model,
+    page=>Url.Action("Index",
+    "Operacion",new{page=page}),X.PagedList.Web.Common.PagedListRenderOptions.MinimalWithItemCountText)
+    </h3>
+</div>
+</div>
+</div>
+</div>
+</section>

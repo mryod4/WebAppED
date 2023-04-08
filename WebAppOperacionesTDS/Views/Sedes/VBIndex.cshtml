@@ -1,0 +1,44 @@
+﻿
+
+
+<h2>Listado de Sedes</h2>
+<br>
+<form>
+    <div class="row">
+        <div class="col-3">
+            <input class="form-control" name="Filtro" placeholder="Ingrese el nombre de la sede"/>
+        </div>
+        <div class="col-4">
+            <button class="btn btn-primary">Filtrar</button>
+        </div>
+        <div class="col-5">
+
+        </div>
+
+    </div>
+</form>
+<hr>
+<br>
+<table class="table table-hover table-bordered">
+    <thead>
+        <tr class="table-info">
+            <th><center><strong>@Html.Label("IdSedes")</strong></center></th>
+            <th><center><strong>@Html.Label("Nombre")</strong></center></th>
+            <th><center><strong>@Html.Label("Direccion")</strong></center></th>
+            <th><center><strong>@Html.Label("Responsable")</strong></center></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in ViewBag.Informacion)
+        {
+            <tr>
+                <td align="center">@item.IdSedes</td>
+                <td align="center">@item.Nombre</td>
+                <td align="center">@item.Direccion</td>
+                <td align="center">@item.Responsable</td>
+            </tr>
+        }
+
+    </tbody>
+
+</table>

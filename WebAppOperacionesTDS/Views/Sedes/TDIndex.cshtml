@@ -1,0 +1,43 @@
+﻿@model IEnumerable<WebAppOperacionesTDS.Models.Sedes>
+
+<h2>Listado de Sedes - TempData</h2>
+<br>
+<table class="table table-hover table-bordered">
+
+<thead>
+    <tr class="table-danger">
+<th>
+    <center>
+        <strong>@Html.DisplayNameFor(item=>item.IdSedes)</strong>
+    </center>
+</th>
+            <th>
+                <center>
+                    <strong>@Html.DisplayNameFor(item=>item.Nombre)</strong>
+                </center>
+            </th>
+            <th>
+                <center>
+                    <strong>@Html.DisplayNameFor(item=>item.Direccion)</strong>
+                </center>
+            </th>
+            <th>
+                <center>
+                    <strong>@Html.DisplayNameFor(item=>item.Responsable)</strong>
+                </center>
+            </th>
+    </tr>
+</thead>
+<tbody>
+        @foreach (var item in TempData["Informacion"] as IList<Sedes>) 
+        {
+            <tr>
+                <td align="center">@item.IdSedes</td>
+                <td align="center">@item.Nombre</td>
+                <td align="center">@item.Direccion</td>
+                <td align="center">@item.Responsable</td>
+            </tr>
+        }
+    </tbody>
+
+</table>

@@ -1,0 +1,30 @@
+﻿<h2>Listado de Instructores - VIEW DATA</h2>
+<br>
+<table class="table table-hover table-bordered">
+<thead>
+    <tr>
+        <th><center><strong>@ViewData["Id"]</strong></center></th>
+        <th><center><strong>@ViewData["No"]</strong></center></th>
+        <th><center><strong>@ViewData["Ap"]</strong></center></th>
+        <th><center><strong>@ViewData["Dn"]</strong></center></th>
+        <th><center><strong>@ViewData["Ed"]</strong></center></th>
+        <th><center><strong>@ViewData["Es"]</strong></center></th>
+        <th><center><strong>@ViewData["Est"]</strong></center></th>
+    </tr>
+</thead>
+<tbody>
+        @foreach (var item in ViewData["Registros"] as IList<Instructor>)
+            {
+            <tr>
+            <td align="center">@item.IdInstructor</td>    
+                <td align="center">@item.Nombres</td>
+                    <td align="center">@item.Apellidos</td> 
+                        <td align="center">@item.DNI</td>
+                            <td align="center">@item.EDAD</td> 
+    <td align="center">@item.Especialidad</td>
+        <td align="center">@item.Estado</td>
+
+            </tr>
+        }
+</tbody>
+</table>

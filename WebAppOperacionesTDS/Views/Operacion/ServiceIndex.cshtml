@@ -1,0 +1,28 @@
+﻿<br>
+<h1>Listado de cuenta con Monto</h1>
+<br>
+
+<table class="table table-hover">
+    <thead>
+        <tr class="table-info">
+            <th><center><strong>ID</strong></center></th>
+            <th><center><strong>Banco</strong></center></th>
+            <th><center><strong>Cuenta</strong></center></th>
+            <th><center><strong>Monto</strong></center></th>
+        
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in ViewBag.CuentasServicio)
+        {
+            <tr>
+                <td align="center">@item.IdEmpresa</td>
+                <td align="center">@item.ReferenciaWCF</td>
+                <td align="center">@item.NumeroCuentaWCF</td>
+                <td align="center">@item.MontoWCF</td>
+
+            </tr>
+        }
+    </tbody>
+
+</table>
